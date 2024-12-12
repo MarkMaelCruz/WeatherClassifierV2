@@ -54,7 +54,7 @@ st.markdown(f"""
 
     .overlay {{
         background-color: rgba(255, 255, 255, 0.8);  /* White with some transparency */
-        width: 100%;  /* Full width */
+        width: 500%;  /* Full width */
         margin-left: auto;
         margin-right: auto;
         padding: 50px 20px;
