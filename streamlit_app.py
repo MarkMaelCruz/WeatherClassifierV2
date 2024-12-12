@@ -52,6 +52,25 @@ st.markdown(f"""
         margin-top: 20px;
     }}
 
+    .overlay {{
+        background-color: rgba(255, 255, 255, 0.8);  /* White with some transparency */
+        width: 80%;  /* Width larger than the image block */
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 50px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }}
+
+    .upload-section {{
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -59,15 +78,18 @@ st.markdown(f"""
 st.markdown('<div class="title">Weather Image Classifier</div>', unsafe_allow_html=True)
 st.write("Upload an image to classify the weather condition.")
 
-# Upload Image
+# Add overlay background in the middle of the page
+st.markdown('<div class="overlay">', unsafe_allow_html=True)
+
+# Image upload section in overlay
+st.markdown('<div class="upload-section">', unsafe_allow_html=True)
 uploaded_file = st.file_uploader("Choose an image file", type=['jpg', 'png', 'jpeg'])
+
 if uploaded_file is not None:
     image = load_img(uploaded_file, target_size=(224, 224))
-    
+
     # Display the uploaded image
-    st.markdown('<div class="image-box">', unsafe_allow_html=True)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
     # Load the trained model
     model = tf.keras.models.load_model('Best_Trained_Model.h5')
@@ -87,12 +109,12 @@ if uploaded_file is not None:
     
     st.success('Prediction completed!')
 
-    # Display result
-    st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+    # Display result in the overlay
     st.markdown(f"<h3 style='color: #4CAF50;'>Predicted Class: {predicted_class}</h3>", unsafe_allow_html=True)
     st.markdown(f"<h4 style='color: #FF9800;'>Confidence: {confidence:.2f}</h4>", unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
     # Add a button to trigger the prediction again (optional)
     if st.button('Classify Another Image'):
         st.experimental_rerun()
+
+st.markdown('</div>', unsafe_allow_html=True)  # Close overlay div
