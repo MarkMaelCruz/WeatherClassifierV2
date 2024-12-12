@@ -53,6 +53,21 @@ st.markdown(f"""
         background-color: rgba(255, 255, 255, 0.8); /* Light white background */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }}
+
+    .success-msg {{
+        font-size: 20px;
+        color: #000000;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);  /* White background with transparency */
+        border-radius: 10px;
+    }}
+
+    .classify-btn {{
+        margin-top: 10px;  /* Move button down by 10px */
+    }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -86,14 +101,17 @@ if uploaded_file is not None:
         predicted_class = class_labels[np.argmax(prediction)]
         confidence = np.max(prediction)
     
-    st.success('Prediction completed!')
+    # Display success message
+    st.markdown('<div class="success-msg">Prediction completed!</div>', unsafe_allow_html=True)
 
     # Display result
     st.markdown(f"<div class='result'>Predicted Class: {predicted_class}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='result'>Confidence: {confidence:.2f}</div>", unsafe_allow_html=True)
 
-    # Add a button to trigger the prediction again (optional)
+    # Add a button to trigger the prediction again with adjusted margin
+    st.markdown('<div class="classify-btn">', unsafe_allow_html=True)
     if st.button('Classify Another Image'):
         st.experimental_rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)  # Close upload-section div
