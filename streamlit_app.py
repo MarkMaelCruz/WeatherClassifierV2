@@ -19,7 +19,7 @@ st.markdown("""
         font-family: 'Roboto', sans-serif;
         font-size: 50px;
         font-weight: bold;
-        color: #ffffff;
+        color: #000000;  # Black color for title
         text-align: center;
         margin-top: 20px;
     }
@@ -47,7 +47,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Title
+# Title (Black color)
 st.markdown('<div class="title">Weather Image Classifier</div>', unsafe_allow_html=True)
 st.write("Upload an image to classify the weather condition.")
 
