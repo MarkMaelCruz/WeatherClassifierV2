@@ -2,47 +2,55 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
-import os
+import base64
 
-# Set the background and custom styles using HTML and CSS
-st.markdown("""
+# Convert image to base64
+def image_to_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
+# Replace with your image path
+base64_image = image_to_base64('Wallpaper11.jpg')  # Make sure 'Wallpaper11.jpg' is in the same directory
+
+# Set background using the base64 image
+st.markdown(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@300&display=swap');
     
-    .stApp {
-        background-image: url('/Wallpaper11');  # Use the image file as a local path
+    .stApp {{
+        background-image: url('data:image/jpeg;base64,{base64_image}');
         background-size: cover;
         font-family: 'Open Sans', sans-serif;
-    }
+    }}
 
-    .title {
+    .title {{
         font-family: 'Roboto', sans-serif;
         font-size: 50px;
         font-weight: bold;
         color: #000000;  # Black color for title
         text-align: center;
         margin-top: 20px;
-    }
+    }}
 
-    .result {
+    .result {{
         font-size: 30px;
         color: #ffffff;
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
-    }
+    }}
 
-    .prediction-box {
+    .prediction-box {{
         background-color: rgba(0, 0, 0, 0.6);
         padding: 20px;
         border-radius: 10px;
         margin-top: 20px;
-    }
+    }}
 
-    .image-box {
+    .image-box {{
         text-align: center;
         margin-top: 20px;
-    }
+    }}
 
     </style>
     """, unsafe_allow_html=True)
