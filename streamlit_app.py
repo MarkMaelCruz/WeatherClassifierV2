@@ -2,7 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
-import gdown
+import os
 
 # Set the background and custom styles using HTML and CSS
 st.markdown("""
@@ -10,7 +10,7 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@300&display=swap');
     
     .stApp {
-        background-image: url('https://your-image-url.com');  # Use your background image URL here
+        background-image: url('/Wallpaper11');  # Use the image file as a local path
         background-size: cover;
         font-family: 'Open Sans', sans-serif;
     }
@@ -61,13 +61,8 @@ if uploaded_file is not None:
     st.image(image, caption='Uploaded Image', use_column_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Download model from Google Drive using gdown (if not already downloaded)
-    model_url = 'https://drive.google.com/uc?export=download&id=14khsH-JbcQZ-OqBl2DxcEwhUsfKLyf1K'
-    output = 'Best_Trained_Model.h5'
-    gdown.download(model_url, output, quiet=False)
-
     # Load the trained model
-    model = tf.keras.models.load_model(output)
+    model = tf.keras.models.load_model('Best_Trained_Model.h5')
 
     # Define class labels
     class_labels = ['Cloudy', 'Rain', 'Shine', 'Sunrise']
