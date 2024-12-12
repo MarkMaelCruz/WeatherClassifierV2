@@ -4,7 +4,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 import base64
 
-# Convert image to base64
+# Convert image to base64 for Streamlit background
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
@@ -27,24 +27,30 @@ st.markdown(f"""
         font-family: 'Roboto', sans-serif;
         font-size: 50px;
         font-weight: bold;
-        color: #000000;  # Black color for title
+        color: #000000;
         text-align: center;
         margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.7);  /* White background with transparency */
+        border-radius: 10px;
     }}
 
     .result {{
         font-size: 30px;
-        color: #ffffff;
+        color: #000000;
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);  /* White background with transparency */
+        border-radius: 10px;
     }}
 
     .upload-section {{
         padding: 20px;
         margin-top: 30px;
         border-radius: 15px;
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.8); /* Light white background */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }}
     </style>
@@ -83,8 +89,8 @@ if uploaded_file is not None:
     st.success('Prediction completed!')
 
     # Display result
-    st.markdown(f"<h3 style='color: #4CAF50;'>Predicted Class: {predicted_class}</h3>", unsafe_allow_html=True)
-    st.markdown(f"<h4 style='color: #FF9800;'>Confidence: {confidence:.2f}</h4>", unsafe_allow_html=True)
+    st.markdown(f"<div class='result'>Predicted Class: {predicted_class}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='result'>Confidence: {confidence:.2f}</div>", unsafe_allow_html=True)
 
     # Add a button to trigger the prediction again (optional)
     if st.button('Classify Another Image'):
