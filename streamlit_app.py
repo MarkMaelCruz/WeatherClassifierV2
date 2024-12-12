@@ -54,14 +54,18 @@ st.markdown(f"""
 
     .overlay {{
         background-color: rgba(255, 255, 255, 0.8);  /* White with some transparency */
-        width: 80%;  /* Width larger than the image block */
+        width: 100%;  /* Full width */
         margin-left: auto;
         margin-right: auto;
-        padding: 30px;
+        padding: 50px 20px;
         border-radius: 15px;
         text-align: center;
-        margin-top: 50px;
+        margin-top: 100px;  /* Move it below title */
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 150px;
+        left: 0;
+        right: 0;
     }}
 
     .upload-section {{
