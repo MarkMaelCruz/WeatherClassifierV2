@@ -15,8 +15,8 @@ model = tf.keras.models.load_model(output)
 # Define class labels
 class_labels = ['Cloudy', 'Rain', 'Shine', 'Sunrise']
 
-st.title('Weather Image Classifier')
-st.write("Upload an image to classify the weather condition.")
+st.title('Weather Condition Classification')
+st.write("Upload an image so we may see what is the weather :> .")
 
 uploaded_file = st.file_uploader("Choose an image file", type=['jpg', 'png', 'jpeg'])
 if uploaded_file is not None:
